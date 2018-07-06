@@ -1,32 +1,20 @@
-key = 'abcdefghijklmnopqrstuvwxyz'
 
-def encrypt(n, plaintext):
-    """Encrypt the string and return the ciphertext"""
-    result = ''
+alphabet = "abcdefghijklmnopqrstuvwxyz"
+message = "loon goon"
+ 
+def decode(secretMessage):    
+    for key in range(len(alphabet)):
+        newAlphabet = alphabet[key:] + alphabet[:key]
+        attempt = ""
+ 
+        for i in range(len(secretMessage)):
+            index = alphabet.find(secretMessage[i])
+ 
+            if index < 0:
+                attempt += secretMessage[i]
+            else:
+                attempt += newAlphabet[index]
+ 
+        print("Key: " + str(key) + " - " + attempt)
 
-
-
-def decrypt(n, ciphertext):
-    """Decrypt the string and return the plaintext"""
-    result = ''
-
-    for l in ciphertext:
-        try:
-            i = (key.index(l) - n) % 26
-            result += key[i]
-        except ValueError:
-            result += l
-
-    return result
-
-text = "defript email!"
-offset = 5
-
-encrypted = encrypt(offset, text)
-print('Encrypted:', encrypted)
-
-decrypted = decrypt(offset, encrypted)
-print('Decrypted:', decrypted)
-
-
-
+decode(message)
